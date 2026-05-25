@@ -1,0 +1,32 @@
+### Get all participants
+GET http://localhost:3000/participants
+
+###
+
+### Create a participant - Alice
+POST http://localhost:3000/participants
+Content-Type: application/json
+
+{
+  "name": "Alice"
+}
+
+###
+
+### Create a participant - Bob
+POST http://localhost:3000/participants
+Content-Type: application/json
+
+{
+  "name": "Bob"
+}
+
+###
+
+### Create a participant - Charlie
+POST http://localhost:3000/participants
+Content-Type: application/json
+
+{
+  "name": "Charlie"
+}

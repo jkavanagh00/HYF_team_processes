@@ -1,0 +1,33 @@
+### Get all expenses
+GET http://localhost:3000/expenses
+
+###
+
+### Create an expense - Dinner paid by Alice (id: 1), split between all three
+POST http://localhost:3000/expenses
+Content-Type: application/json
+
+{
+  "title": "Dinner",
+  "amount": 60,
+  "paidByParticipantId": 1,
+  "participantIds": [1, 2, 3]
+}
+
+###
+
+### Create an expense - Taxi paid by Bob (id: 2), split between Bob and Charlie
+POST http://localhost:3000/expenses
+Content-Type: application/json
+
+{
+  "title": "Taxi",
+  "amount": 30,
+  "paidByParticipantId": 2,
+  "participantIds": [2, 3]
+}
+
+###
+
+### Get balances
+GET http://localhost:3000/balances
