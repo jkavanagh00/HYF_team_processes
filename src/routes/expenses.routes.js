@@ -38,7 +38,7 @@ router.get("/", (req, res) => {
   });
 });
 
-router.post("/", (request, response) => {
+router.post("/", validateAddExpense, (request, response) => {
   const newExpense = {
     id: expenses.length + 1,
     title: request.body.title,
