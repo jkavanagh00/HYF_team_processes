@@ -4,8 +4,10 @@ const participants = require("../data/participants");
 
 const validateAddParticipant = (request, response) => {
   const { name } = request.body;
-  if (!name) {
-    return response.status(400).json({ error: "Participant name is required" });
+  if (!name || typeof name !== "string") {
+    return response
+      .status(400)
+      .json({ error: "Participant name is required and must be a string" });
   }
 };
 
