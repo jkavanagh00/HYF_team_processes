@@ -32,7 +32,10 @@ const validateAddExpense = (request, response, next) => {
 };
 
 router.get("/", (req, res) => {
-  // TODO: return all expenses
+  res.status(200).json({
+    status: "success",
+    data: expenses,
+  });
 });
 
 router.post("/", (request, response) => {
