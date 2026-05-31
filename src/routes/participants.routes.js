@@ -2,12 +2,26 @@ const express = require("express");
 const router = express.Router();
 const participants = require("../data/participants");
 
+const validateAddParticipant = (request, response) => {
+  const { name } = request.body;
+  if (!name || typeof name !== "string") {
+    return response
+      .status(400)
+      .json({ error: "Participant name is required and must be a string" });
+  }
+};
+
 router.get("/", (req, res) => {
   // TODO: return all participants
 });
 
-router.post("/", (req, res) => {
-  // TODO: implement participant creation
+router.post("/", validateAddParticipant, async (request, response) => {
+  try {
+    const participant = await Participant.create(request.body);
+    response.status(201).json(participant);
+  } catch (error) {
+    response.status(400).json({ message: error.message });
+  }
   //
   // Expected request body: { name: "Alice" }
   // Expected response: the created participant with a unique id
