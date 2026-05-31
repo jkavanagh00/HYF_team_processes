@@ -2,19 +2,29 @@ const participants = require("../data/participants");
 const expenses = require("../data/expenses");
 
 function calculateBalances() {
-  // TODO: implement balance calculation
-  //
-  // Expected logic:
-  // 1. For each expense, the payer gets credited the full amount
-  // 2. Each participant listed in participantIds owes an equal share
-  // 3. Return an array of { participantId, name, balance } objects
-  //    - positive balance = this person is owed money
-  //    - negative balance = this person owes money
-  //
-  // Hint: start with a map of participantId -> balance (all zeros),
-  // then loop through expenses and update balances.
+  const balances = {};
+  // Initialize all balances to zero
+  participants.forEach(participant => {
+    balances[participant.id] = 0;
+  });
 
-  return [];
+  // For each expense, credit payer and debit participants
+  expenses.forEach(expense => {
+    // Credit the payer
+    balances[expense.participantId] += expense.amount;
+    // Each participant in participantIds owes an equal share
+    const share = expense.amount / expense.participantIds.length;
+    expense.participantIds.forEach(pid => {
+      balances[pid] -= share;
+    });
+  });
+
+  // Build the result array
+  return participants.map(participant => ({
+    participantId: participant.id,
+    name: participant.name,
+    balance: balances[participant.id]
+  }));
 }
 
 module.exports = { calculateBalances };
