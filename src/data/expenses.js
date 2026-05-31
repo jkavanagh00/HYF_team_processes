@@ -3,15 +3,15 @@ function addExpense(expense) {
   if (typeof expense.amount !== "number" || expense.amount < 1) {
     throw new Error("Amount must be positive");
   }
-  if (typeof expense.title !== "string" || expense.title.length > 5)
+  if (typeof expense.title !== "string" || expense.title.length > 10)
     throw new Error(
-      "Title must be string and the length of the title not more than 5",
+      "Title must be string and the length of the title not more than 10",
     );
-  if (typeof expense.id !== "number")
-    throw new Error("The expenses Id must be number");
+  if (typeof expense.id !== "string")
+    throw new Error("The expenses Id must be string");
 }
-if (typeof paidByParticipantId !== "number") {
-  throw new Error("paidByParticipantId must be a number");
+if (typeof paidByParticipantId !== "string") {
+  throw new Error("paidByParticipantId must be a string");
 }
 if (!Array.isArray(participantIds) || participantIds.length === 0) {
   throw new Error("participantIds must be a non-empty array");
