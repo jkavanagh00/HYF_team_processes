@@ -9,15 +9,19 @@ function addExpense(expense) {
     );
   if (typeof expense.id !== "string")
     throw new Error("The expenses Id must be string");
+
+  if (typeof expense.paidByParticipantId !== "string") {
+    throw new Error("paidByParticipantId must be a string");
+  }
+  if (
+    !Array.isArray(expense.participantIds) ||
+    expense.participantIds.length === 0
+  ) {
+    throw new Error("participantIds must be a non-empty array");
+  }
+  expenses.push(expense);
+  return expense;
 }
-if (typeof paidByParticipantId !== "string") {
-  throw new Error("paidByParticipantId must be a string");
-}
-if (!Array.isArray(participantIds) || participantIds.length === 0) {
-  throw new Error("participantIds must be a non-empty array");
-}
-expenses.push(expense);
-return expense;
 addExpense({
   id: "e1",
   title: "Dinner",
