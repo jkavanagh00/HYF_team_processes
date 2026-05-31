@@ -2,13 +2,27 @@ const express = require("express");
 const router = express.Router();
 const expenses = require("../data/expenses");
 
+const validateAddExpense = (request, response) => {
+  const { title, amount, paidByParticipantId, participantIds } = request.body;
+  if (!title || typeof title !== "string") {
+    return response
+      .status(400)   
+      .json({ error: "Expense name is required and must be a string" });
+  }
+};
+
+
 router.get("/", (req, res) => {
   // TODO: return all expenses
 });
 
-router.post("/", (req, res) => {
-  // TODO: implement expense creation
-  //
+router.post("/", (request, response) => {
+try { 
+    const exp = await Expense.create(request.body);
+    response.status(201).json(expense);
+  } catch (error) {
+    response.status(400).json({ message: error.message });
+  }  //
   // Expected request body:
   // {
   //   title: "Dinner",
