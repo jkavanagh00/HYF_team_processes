@@ -13,7 +13,10 @@ const validateAddParticipant = (request, response, next) => {
 };
 
 router.get("/", (req, res) => {
-  // TODO: return all participants
+  res.status(200).json({
+    status: "success",
+    data: participants,
+  });
 });
 
 router.post("/", validateAddParticipant, async (request, response) => {
