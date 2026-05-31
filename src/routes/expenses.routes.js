@@ -37,10 +37,11 @@ router.get("/", (req, res) => {
 
 router.post("/", (request, response) => {
   const newExpense = {
-    title: request.body.name,
-    amount: request.body.name,
-    paidByParticipantId: request.body.name,
-    participantIds: request.body.name,
+    id: expenses.length + 1,
+    title: request.body.title,
+    amount: request.body.amount,
+    paidByParticipantId: request.body.paidByParticipantId,
+    participantIds: request.body.participantIds,
   };
 
   try {
