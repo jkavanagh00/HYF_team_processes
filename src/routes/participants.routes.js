@@ -3,7 +3,6 @@ const router = express.Router();
 const participants = require("../data/participants");
 
 router.get("/", (req, res) => {
-  // TODO: return all participants
   res.status(200).json({
     status: "success",
     data: participants,
