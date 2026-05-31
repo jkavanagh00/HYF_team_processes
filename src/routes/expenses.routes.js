@@ -14,9 +14,9 @@ const validateAddExpense = (request, response, next) => {
       .status(400)
       .json({ error: "Amount is required and must be a positive number" });
   }
-  if (!paidByParticipantId || typeof paidByParticipantId !== "number") {
+  if (!paidByParticipantId || typeof paidByParticipantId !== "string") {
     return response.status(400).json({
-      error: "Paid by participant ID is required and must be a number",
+      error: "Paid by participant ID is required and must be a string",
     });
   }
   if (
