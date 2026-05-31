@@ -21,7 +21,7 @@ router.get("/", (req, res) => {
 
 router.post("/", validateAddParticipant, async (request, response) => {
   const newParticipant = {
-    id: Date.now(),
+    id: participants.length + 1,
     name: request.body.name,
   };
 
