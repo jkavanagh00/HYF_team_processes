@@ -3,7 +3,8 @@ const router = express.Router();
 const { calculateBalances } = require("../services/balance.service");
 
 router.get("/", (req, res) => {
-  // TODO: call calculateBalances() and return the result
+  const balances = calculateBalances();
+  res.status(200).json(balances);
 });
 
 module.exports = router;
